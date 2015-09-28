@@ -13,3 +13,7 @@ If possible, use [Homestead Improved](https://github.com/Swader/homestead_improv
 * have fun;
 
 Yay.
+
+### Notes
+
+You could stumble upon some issues while creating the *bower_components* folder, create it manually in the _public_ folder. Don't worry, you're not alone: just create it manually and then execute _bower install_ normally.
