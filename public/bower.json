@@ -1,0 +1,23 @@
+{
+  "name": "boilerplate_angular_client",
+  "version": "0.1.0",
+  "description": "Angular JS client for the Laravel API Boilerplate example project.",
+  "authors": [
+    "Francesco Malatesta"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-route": "~1.4.6",
+    "angular-local-storage": "~0.2.2",
+    "angular": "~1.4.6",
+    "bootstrap": "~3.3.5",
+    "restangular": "~1.5.1"
+  }
+}

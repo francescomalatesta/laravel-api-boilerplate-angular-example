@@ -1,0 +1,61 @@
+<hr>
+
+<div class="pull-left"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#addBookModal">+ Add Book</button></div>
+<div class="pull-right"><button type="button" class="btn btn-info" ng-click="logout()">Logout!</button></div>
+<div class="clearfix"></div>
+
+<hr>
+
+<div class="row">
+	<div class="col-md-12">
+		<p>You currently have <b>{{ books.length }}</b> books in your wishlist.</p>
+		<ul>
+			<li ng-repeat="book in books">
+				<b>{{ book.title }}</b> by <i>{{ book.author_name }}</i> | 
+				<button ng-click="load(book.id)" class="btn btn-info btn-xs">Update</button>
+				<button ng-click="remove(book.id)" class="btn btn-danger btn-xs">Remove</button>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<div class="modal fade" id="addBookModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Add a Book</h4>
+      </div>
+      <div class="modal-body">
+        <p><input class="form-control" ng-model="currentBookTitle" placeholder="Title..." type="text"></p>
+        <p><input class="form-control" ng-model="currentBookAuthorName" placeholder="Author Name..." type="text"></p>
+        <p><input class="form-control" ng-model="currentBookPagesCount" placeholder="Pages Count..." type="text"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="create()">Save Book</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="updateBookModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Update a Book</h4>
+      </div>
+      <div class="modal-body">
+      	<input type="hidden" ng-model="currentBookId" />
+        <p><input class="form-control" ng-model="currentBookTitle" placeholder="Title..." type="text"></p>
+        <p><input class="form-control" ng-model="currentBookAuthorName" placeholder="Author Name..." type="text"></p>
+        <p><input class="form-control" ng-model="currentBookPagesCount" placeholder="Pages Count..." type="text"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="update()">Save Changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
