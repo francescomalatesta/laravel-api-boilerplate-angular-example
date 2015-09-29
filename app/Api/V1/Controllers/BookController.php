@@ -16,8 +16,7 @@ class BookController extends Controller
 
     public function index()
     {
-        $currentUser = JWTAuth::parseToken()->authenticate();
-        return $currentUser
+        return $this->currentUser()
             ->books()
             ->orderBy('created_at', 'DESC')
             ->get()
@@ -26,9 +25,7 @@ class BookController extends Controller
 
     public function show($id)
     {
-        $currentUser = JWTAuth::parseToken()->authenticate();
-
-        $book = $currentUser->books()->find($id);
+        $book = $this->currentUser()->books()->find($id);
 
         if(!$book)
             throw new NotFoundHttpException; 
@@ -38,15 +35,13 @@ class BookController extends Controller
 
     public function store(Request $request)
     {
-        $currentUser = JWTAuth::parseToken()->authenticate();
-
         $book = new Book;
 
         $book->title = $request->get('title');
         $book->author_name = $request->get('author_name');
         $book->pages_count = $request->get('pages_count');
 
-        if($currentUser->books()->save($book))
+        if($this->currentUser()->books()->save($book))
             return $this->response->created();
         else
             return $this->response->error('could_not_create_book', 500);
@@ -54,9 +49,7 @@ class BookController extends Controller
 
     public function update(Request $request, $id)
     {
-        $currentUser = JWTAuth::parseToken()->authenticate();
-
-        $book = $currentUser->books()->find($id);
+        $book = $this->currentUser()->books()->find($id);
         if(!$book)
             throw new NotFoundHttpException;
 
@@ -70,9 +63,7 @@ class BookController extends Controller
 
     public function destroy($id)
     {
-        $currentUser = JWTAuth::parseToken()->authenticate();
-
-        $book = $currentUser->books()->find($id);
+        $book = $this->currentUser()->books()->find($id);
 
         if(!$book)
             throw new NotFoundHttpException;
@@ -81,5 +72,9 @@ class BookController extends Controller
             return $this->response->noContent();
         else
             return $this->response->error('could_not_delete_book', 500);
+    }
+
+    private function getUser() {
+        return JWTAuth::parseToken()->authenticate();
     }
 }
