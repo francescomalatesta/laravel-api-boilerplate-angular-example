@@ -74,7 +74,7 @@ class BookController extends Controller
             return $this->response->error('could_not_delete_book', 500);
     }
 
-    private function getUser() {
+    private function currentUser() {
         return JWTAuth::parseToken()->authenticate();
     }
 }
